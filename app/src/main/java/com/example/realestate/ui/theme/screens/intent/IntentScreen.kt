@@ -20,10 +20,12 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -141,6 +143,7 @@ fun IntentScreen(navController: NavController){
                         .padding(top = 80.dp)
 
                 ){
+                    val mContext = LocalContext.current
                     //start of row
                     Row {
                         Card (modifier = Modifier
@@ -181,7 +184,11 @@ fun IntentScreen(navController: NavController){
                                 Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = Color.Blue, modifier = Modifier.size(20.dp))
                             }
                             Text(text = "54,780 reviews")
-                            Button(onClick = { /*TODO*/ },
+                            Button(onClick = {
+                                val callIntent=Intent(Intent.ACTION_DIAL)
+                                callIntent.data="tel:0720245837".toUri()
+                                mContext.startActivity(callIntent)
+                            },
                                 colors = ButtonDefaults.buttonColors(Color.Red),
                                 shape = RoundedCornerShape(100.dp)
 
@@ -194,17 +201,16 @@ fun IntentScreen(navController: NavController){
                     }
                     ///end of row
                     Spacer(modifier = Modifier.height(10.dp))
-                    val mContext = LocalContext.current
+
                     
                     Button(onClick = {
-                        OutlinedButton(onClick ={
-                            val simToolKitLaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                        val simToolKitLaunchIntent =
+                            mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                        simToolKitLaunchIntent?.let { mContext.startActivity(it) }
 
 
 
-                        },
+                    },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 20.dp, end = 20.dp)
@@ -335,7 +341,7 @@ fun IntentScreen(navController: NavController){
 
 val bottomNavItems = listOf(
     BottomNavItem(
-        title = "Home",
+        title = "Home Page",
         route="home",
         selectedIcon=Icons.Filled.Home,
         unselectedIcon=Icons.Outlined.Home,
@@ -346,17 +352,17 @@ val bottomNavItems = listOf(
 
 
     BottomNavItem(
-        title = "Login",
-        route="login",
-        selectedIcon=Icons.Filled.Person,
-        unselectedIcon=Icons.Outlined.Person,
+        title = "Details",
+        route="detail",
+        selectedIcon=Icons.Filled.Info,
+        unselectedIcon=Icons.Outlined.Info,
         hasNews = true,
         badges=5
     ),
 
     BottomNavItem(
-        title = "Signup",
-        route="signup",
+        title = "Property",
+        route="property",
         selectedIcon=Icons.Filled.Face,
         unselectedIcon=Icons.Outlined.Face,
         hasNews = true,

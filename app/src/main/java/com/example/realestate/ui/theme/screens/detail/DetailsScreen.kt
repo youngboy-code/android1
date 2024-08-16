@@ -12,11 +12,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,6 +49,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.realestate.R
+import com.example.realestate.navigation.ROUT_DETAIL
+import com.example.realestate.navigation.ROUT_INTENT
+import com.example.realestate.navigation.ROUT_PROPERTY
 import com.example.realestate.ui.theme.lightpink
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -116,15 +122,18 @@ fun DetailsScreen(navController: NavController){
         Row (modifier = Modifier
             .padding(start = 20.dp)
             .horizontalScroll(rememberScrollState())
-        ){
-            Card (modifier = Modifier
-                .height(180.dp)
-                .width(200.dp)){
+        ) {
+            Card(
+                modifier = Modifier
+                    .height(180.dp)
+                    .width(200.dp)
+            ) {
 
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Image(painter = painterResource(id = R.drawable.img_1) ,
-                        contentDescription ="home",
-                        modifier =Modifier.fillMaxSize(),
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_1),
+                        contentDescription = "home",
+                        modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
@@ -135,14 +144,17 @@ fun DetailsScreen(navController: NavController){
             Spacer(modifier = Modifier.width(20.dp))
             //card 2
 
-            Card (modifier = Modifier
-                .height(180.dp)
-                .width(200.dp)){
+            Card(
+                modifier = Modifier
+                    .height(180.dp)
+                    .width(200.dp)
+            ) {
 
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Image(painter = painterResource(id = R.drawable.img_2) ,
-                        contentDescription ="home",
-                        modifier =Modifier.fillMaxSize(),
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_2),
+                        contentDescription = "home",
+                        modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
@@ -150,14 +162,17 @@ fun DetailsScreen(navController: NavController){
             }
             Spacer(modifier = Modifier.width(20.dp))
             //card 3
-            Card (modifier = Modifier
-                .height(180.dp)
-                .width(200.dp)){
+            Card(
+                modifier = Modifier
+                    .height(180.dp)
+                    .width(200.dp)
+            ) {
 
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Image(painter = painterResource(id = R.drawable.img_3) ,
-                        contentDescription ="home",
-                        modifier =Modifier.fillMaxSize(),
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_3),
+                        contentDescription = "home",
+                        modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
@@ -165,14 +180,17 @@ fun DetailsScreen(navController: NavController){
             }
             Spacer(modifier = Modifier.width(20.dp))
             //card 4
-            Card (modifier = Modifier
-                .height(180.dp)
-                .width(200.dp)){
+            Card(
+                modifier = Modifier
+                    .height(180.dp)
+                    .width(200.dp)
+            ) {
 
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Image(painter = painterResource(id = R.drawable.img_5) ,
-                        contentDescription ="home",
-                        modifier =Modifier.fillMaxSize(),
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_5),
+                        contentDescription = "home",
+                        modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
@@ -181,29 +199,35 @@ fun DetailsScreen(navController: NavController){
             Spacer(modifier = Modifier.width(20.dp))
 
             //card 5
-            Card (modifier = Modifier
-                .height(180.dp)
-                .width(200.dp)){
+            Card(
+                modifier = Modifier
+                    .height(180.dp)
+                    .width(200.dp)
+            ) {
 
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-                    Image(painter = painterResource(id = R.drawable.img_6) ,
-                        contentDescription ="home",
-                        modifier =Modifier.fillMaxSize(),
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_6),
+                        contentDescription = "home",
+                        modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
                 }
             }
 
-
-
         }
+            Button(onClick = { navController.navigate(ROUT_PROPERTY) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp)
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(Color.Red),
+                shape = RoundedCornerShape(100.dp)
 
-
-
-
-
-
+            ){
+                Text(text = "Continue")
+            }
 
 
 
@@ -221,4 +245,5 @@ fun DetailsScreen(navController: NavController){
 @Preview(showBackground = true)
 fun DetailsScreenPreview(){
     DetailsScreen(rememberNavController())
+
 }
